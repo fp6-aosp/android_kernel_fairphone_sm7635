@@ -295,4 +295,6 @@ extern int qcom_scm_tsens_reinit(int *tsens_ret);
 extern int gh_scm_assign_mem(phys_addr_t mem_addr, size_t mem_sz, u64 *src,
 			const struct qcom_scm_vmperm *dstvm,
 			unsigned int nr_dst_vmperm);
+
+extern int qcom_scm_prefetch_tgt_ctrl(bool en);
 #endif
