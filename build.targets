@@ -4,6 +4,7 @@ build.config.msm.sun
 build.config.msm.sun.le
 build.config.msm.kera.le
 build.config.msm.pineapple
+build.config.msm.fps
 build.config.msm.sun.allyes
 build.config.msm.parrot
 build.config.msm.monaco

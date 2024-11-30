@@ -3,6 +3,7 @@ targets = [
     "monaco",
     "parrot",
     "pineapple",
+    "fps",
     "sun",
 ]
 
