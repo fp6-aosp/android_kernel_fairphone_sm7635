@@ -350,6 +350,9 @@ static const char * const qc_power_supply_wls_type_text[] = {
 	"Unknown", "BPP", "EPP", "HPP"
 };
 
+/*FPS-184 ,set usb online to false when lpd is ture*/
+static int moisture_detected = 0;
+
 static RAW_NOTIFIER_HEAD(hboost_notifier);
 
 int register_hboost_event_notifier(struct notifier_block *nb)
@@ -1130,8 +1133,16 @@ static int usb_psy_get_prop(struct power_supply *psy,
 	if (prop == POWER_SUPPLY_PROP_TEMP)
 		pval->intval = DIV_ROUND_CLOSEST((int)pval->intval, 10);
 
+/*FPS-184 ,set usb online to false when lpd is ture ,begin */
+
+	if ((prop == POWER_SUPPLY_PROP_ONLINE) && (1 == moisture_detected)){
+		pval->intval = 0;
+		pr_err("usb_psy_get_prop,set online = 0 when moisture_detected ! \n");
+	}
+
 	return 0;
 }
+/*FPS-184 ,set usb online to false when lpd is ture ,end */
 
 static int usb_psy_set_prop(struct power_supply *psy,
 		enum power_supply_property prop,
@@ -2120,6 +2131,10 @@ static ssize_t moisture_detection_status_show(const struct class *c,
 	rc = read_property_id(bcdev, pst, USB_MOISTURE_DET_STS);
 	if (rc < 0)
 		return rc;
+
+/*FPS-184, set usb online to false when lpd is ture ,begin */
+	moisture_detected = pst->prop[USB_MOISTURE_DET_STS];
+/*FPS-184, set usb online to false when lpd is ture, end */
 
 	return scnprintf(buf, PAGE_SIZE, "%d\n",
 			pst->prop[USB_MOISTURE_DET_STS]);
