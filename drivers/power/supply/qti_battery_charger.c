@@ -2396,7 +2396,7 @@ static ssize_t display_fcc_store(const struct class *c,
 	if(val > 0)
 		fcc_ua = val ;
 	#else
-		fcc_ua = ((val == DISPLAY_OFF_FCC) ? DISPLAY_OFF_FCC : DISPLAY_ON_FCC);
+		fcc_ua = ((val == DISPLAY_ON_FCC) ? DISPLAY_ON_FCC : DISPLAY_OFF_FCC);
 	#endif
 
 	pr_err("display_fcc_store: val=%d,fcc_ua=%d \n", val,fcc_ua);
