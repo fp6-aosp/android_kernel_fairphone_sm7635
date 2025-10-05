@@ -31,7 +31,7 @@ set -ev
 DTC_UPSTREAM_PATH=`pwd`/../dtc
 DTC_LINUX_PATH=`pwd`/scripts/dtc
 
-DTC_SOURCE="checks.c data.c dtc.c dtc.h flattree.c fstree.c livetree.c srcpos.c \
+DTC_SOURCE="checks.c data.c dtc.c dtc.h flattree.c fdtget.c fdtput.c fstree.c livetree.c srcpos.c \
 		srcpos.h treesource.c util.c util.h version_gen.h \
 		dtc-lexer.l dtc-parser.y"
 LIBFDT_SOURCE="fdt.c fdt.h fdt_addresses.c fdt_empty_tree.c \
